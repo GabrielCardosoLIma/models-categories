@@ -23,7 +23,7 @@ app.get('/categories', async (req, res) => {
     }).catch((err) => {
         return res.status(404).json({
             erro: true,
-            mensagem: `Erro: ${err} ou Nenhum Produto encontrado!!!`
+            mensagem: `Erro: ${err} ou Nenhuma Categoria encontrado!!!`
         })
     })
 })
@@ -31,22 +31,21 @@ app.get('/categories', async (req, res) => {
 app.get('/categories/:id', async (req, res) => {
     const { id } = req.params;
     try{
-        // await User.findAll({ where: { id: id }})
-        const Categories = await User.findByPk(id);
-        if(!Categories){
+        const Categorie = await Categories.findByPk(id);
+        if(!Categorie){
             return res.status(400).json({
                 erro: true,
-                mensagem: 'Erro usuário não encontrado!'
+                mensagem: 'Erro Categoria não encontrada!'
             })
         }
         res.status(200).json({
             erro: false,
-            Categories
+            Categorie
         })
     }catch(err) {
         res.status(404).json({
             erro: true,
-            mensgem: `Erro: ${err}`
+            mensagem: `Erro: ${err}`
         })
     }
 })
@@ -58,12 +57,12 @@ app.post('/categorie', async (req, res) => {
 
         return res.json({
             erro: false,
-            mensgem: 'Produto cadastrado com sucesso!'
+            mensgem: 'Categoria cadastrada com sucesso!'
         });
     }).catch(err => {
         return res.status(400).json({
             erro: true,
-            mensgem: `Erro: Produto não cadastrado...${err}`
+            mensgem: `Erro: Categoria não cadastrada...${err}`
         })
     })
 })
@@ -74,12 +73,12 @@ app.put("/categorie", async (req, res) => {
     .then(() => {
         return res.json({
             erro: false,
-            mensagem: 'Produto alterado com sucesso!'
+            mensagem: 'Categoria alterada com sucesso!'
         })
     }).catch((err) =>{
         return res.status(400).json({
             erro: true,
-            mensagem: `Erro: Produto não alterado ...${err}`
+            mensagem: `Erro: Categoria não alterada ...${err}`
         })
     })
 })
@@ -90,12 +89,12 @@ app.delete("/categorie/:id", async (req, res) => {
     .then(() => {
         return res.json({
             erro: false,
-            mensagem: 'Produto apagado com sucesso!!!'
+            mensagem: 'Categoria apagada com sucesso!!!'
         })
     }).catch((err) => {
         return res.status(400).json({
             erro: true,
-            mensagem: `Erro: ${err} Produto não apagado...`
+            mensagem: `Erro: ${err} Categoria não apagada...`
         })
     })
 })
