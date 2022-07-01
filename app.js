@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 require('dotenv').config()
 const Categories = require('./models/categories');
+const Products = require('./models/products');
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
